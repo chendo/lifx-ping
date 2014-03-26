@@ -12,10 +12,29 @@ It abuses the protocol in ways it was never intended for, so **USE AT YOUR OWN R
 ## Usage
 
 ```shell
-git clone https://github.com/chendo/lifx-ping.git
-cd lifx-ping
-bundle
-bundle exec ruby lifx-ping.rb
+$ git clone https://github.com/chendo/lifx-ping.git
+$ cd lifx-ping
+$ bundle
+$ bundle exec ruby lifx-ping.rb
+Scanning for devices...
+1. d073d5xxxxxx: Foo
+2. d073d5xxxxxx: Bar
+3. d073d5xxxxxx: Baz
+4. refresh
+Select a device to ping:
+1
+PING d073d5xxxxxx:
+Response: seq=0 time=20.934 ms
+Response: seq=1 time=23.191 ms
+Response: seq=2 time=22.735 ms
+Response: seq=3 time=38.553 ms
+Response: seq=4 time=15.276 ms
+Response: seq=5 time=14.653 ms
+Response: seq=6 time=12.816 ms
+^C
+--- d073d5xxxxxx ping statistics ---
+7 messages transmitted, 0 messages received, 0.0% message loss
+round trip min/avg/max/std-dev 12.816/21.165/38.553/8.715 ms
 ```
 
 ## License
