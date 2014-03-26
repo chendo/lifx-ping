@@ -1,0 +1,22 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    bindata (2.0.0)
+    configatron (3.0.2)
+    highline (1.6.21)
+    hitimes (1.2.1)
+    lifx (0.4.4)
+      bindata (~> 2.0)
+      configatron (~> 3.0)
+      timers (~> 2.0)
+      yell (~> 2.0)
+    timers (2.0.0)
+      hitimes
+    yell (2.0.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  highline (~> 1.6)
+  lifx (~> 0.4)
