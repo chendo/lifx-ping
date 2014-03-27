@@ -43,8 +43,9 @@ trap :INT do
   puts "--- #{device.id} ping statistics ---"
   transmitted = seq + 1
   lost = timeouts
+  received = transmitted - timeouts
   percent_lost = (lost / transmitted.to_f) * 100
-  puts "%d messages transmitted, %d messages received, %.1f%% message loss" % [transmitted, lost, percent_lost]
+  puts "%d messages transmitted, %d messages received, %.1f%% message loss" % [transmitted, received, percent_lost]
   puts "round trip min/avg/max/std-dev %.3f/%.3f/%.3f/%.3f ms" % [min, stats.mean, max, stats.std_dev]
   exit
 end
