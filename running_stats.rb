@@ -2,10 +2,20 @@
 class RunningStats
   def initialize
     @count = 0
+    @min = 1000000
+    @max = 0
   end
 
   def <<(value)
     @count += 1
+
+    if @min > value
+      @min = value
+    end
+
+    if @max < value
+      @max = value
+    end
 
     if @count == 1
       @old_mean = @new_mean = value
@@ -29,6 +39,14 @@ class RunningStats
 
   def variance
     count > 1 ? @new_stddev / (count - 1).to_f : 0.0
+  end
+
+  def min
+    @min
+  end
+
+  def max
+    @max
   end
 
   def std_dev
