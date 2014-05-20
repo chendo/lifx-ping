@@ -26,9 +26,19 @@ trap :INT do
   rows = []
   c.lights.each do |l|
     stats = data[l.id][:stats]
-    rows << [l.id, l.label, *[stats.min, stats.mean, stats.max, stats.std_dev].map { |f| f.round(3)}, stats.count, "#{(1 - data[l.id][:resp_seqs].count / requests.count.to_f).round(5) * 100}%"]
+    rows << [
+      l.id,
+      l.label,
+      *[stats.min,
+        stats.mean,
+        stats.max,
+        stats.std_dev].map { |f| f.round(3)},
+      stats.count,
+      "#{((1 - data[l.id][:resp_seqs].count / requests.count.to_f) * 100).round(1)}%",
+      l.gateway? ? 'yes' : 'no'
+    ]
   end
-  table = Terminal::Table.new(rows: rows, headings: ['ID', 'Label', 'Min', 'Avg', 'Max', 'Std-Dev', 'Total', 'Packet Loss'])
+  table = Terminal::Table.new(rows: rows, headings: ['ID', 'Label', 'Min', 'Avg', 'Max', 'Std-Dev', 'Total', 'Packet Loss', 'Gateway'])
   (2..7).each do |i|
     table.align_column(i, :right)
   end
@@ -49,7 +59,9 @@ end
 
 puts "PING all:"
 loop do
-  break if seq == 1000
+  if seq == 1000
+    Process.kill("INT", Process.pid)
+  end
   expected_seq = (seq % 1000) + 1
   requests[expected_seq] = Time.now
   c.lights.send_message(LIFX::Protocol::Light::SetWaveform.new(

@@ -1,13 +1,18 @@
+GIT
+  remote: https://github.com/lifx/lifx-gem
+  revision: e1499f70d2ed781deb522cd63c72a305600af497
+  specs:
+    lifx (0.4.8)
+      bindata (~> 2.0)
+      configatron (~> 3.0)
+      timers (~> 1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
     bindata (2.1.0)
     configatron (3.2.0)
     highline (1.6.21)
-    lifx (0.4.8)
-      bindata (~> 2.0)
-      configatron (~> 3.0)
-      timers (~> 1.0)
     terminal-table (1.4.5)
     timers (1.1.0)
 
@@ -16,5 +21,5 @@ PLATFORMS
 
 DEPENDENCIES
   highline (~> 1.6)
-  lifx (~> 0.4)
+  lifx!
   terminal-table
